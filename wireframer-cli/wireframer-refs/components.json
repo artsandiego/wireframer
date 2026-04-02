@@ -1,0 +1,811 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "description": "Wireframe component registry. Each component defines a section with layout, spacing, color, and child structure. Variants allow theme switching. This file is dynamic — new components are added after user approval."
+  },
+
+  "_constants": {
+    "colors": {
+      "light": ["#FFFFFF", "#F5F5F5", "#DFDFDF"],
+      "dark": ["#121212", "#2C2C2C", "#464646"],
+      "text": {
+        "onLight": "#000000",
+        "onDark": "#FFFFFF"
+      },
+      "note": "Only achromatic values. Can shade between defined stops but never introduce chromatic color. No blue, green, orange, etc."
+    },
+    "fonts": {
+      "heading": "Geist",
+      "body": "Geist",
+      "mono": "Geist Mono",
+      "usage": {
+        "headings": "Geist",
+        "bodyText": "Geist",
+        "eyebrow": "Geist Mono",
+        "buttons": "Geist Mono",
+        "labels": "Geist Mono",
+        "code": "Geist Mono"
+      }
+    },
+    "imagePlaceholder": {
+      "onLight": {
+        "background": "#DFDFDF",
+        "border": "1px dashed #DFDFDF",
+        "labelColor": "#464646"
+      },
+      "onDark": {
+        "background": "#464646",
+        "border": "1px dashed #464646",
+        "labelColor": "#DFDFDF"
+      },
+      "label": "Centered dimension text, e.g. '1200×300' or '48×48'",
+      "labelFont": "Geist Mono",
+      "note": "Image placeholders must always have a visible fill that contrasts with the section background. Use onLight when the parent section uses a light variant, onDark when the parent uses a dark variant."
+    },
+    "rules": [
+      "Never use shadow",
+      "Never use effects or texture",
+      "Never use chromatic color",
+      "Text is always #FFFFFF or #000000 depending on background"
+    ]
+  },
+
+  "nav-bar": {
+    "name": "Navigation Bar",
+    "category": "navigation",
+    "variants": {
+      "light": {
+        "background": "#FFFFFF",
+        "textColor": "#464646",
+        "logoColor": "#121212",
+        "border": { "bottom": "1px solid #DFDFDF" }
+      },
+      "dark": {
+        "background": "#121212",
+        "textColor": "#DFDFDF",
+        "logoColor": "#FFFFFF",
+        "border": { "bottom": "1px solid #2C2C2C" }
+      }
+    },
+    "layout": {
+      "direction": "row",
+      "justify": "space-between",
+      "align": "center",
+      "height": 64,
+      "paddingX": 48
+    },
+    "children": [
+      { "role": "logo", "type": "text", "font": "Geist", "fontSize": 18, "fontWeight": 800 },
+      { "role": "nav-links", "type": "group", "font": "Geist", "layout": { "direction": "row", "gap": 32 }, "itemFontSize": 14, "itemFontWeight": 500 },
+      { "role": "cta", "type": "button", "font": "Geist Mono", "fontSize": 14, "fontWeight": 600, "paddingX": 20, "paddingY": 8, "background": "#121212", "textColor": "#FFFFFF" }
+    ]
+  },
+
+  "hero-split": {
+    "name": "Hero — Split Layout",
+    "category": "hero",
+    "variants": {
+      "light": {
+        "background": "#F5F5F5",
+        "headlineColor": "#121212",
+        "subheadColor": "#464646",
+        "tagColor": "#464646"
+      },
+      "dark": {
+        "background": "#121212",
+        "headlineColor": "#FFFFFF",
+        "subheadColor": "#DFDFDF",
+        "tagColor": "#DFDFDF"
+      }
+    },
+    "layout": {
+      "direction": "row",
+      "gap": 48,
+      "align": "center",
+      "paddingX": 48,
+      "paddingY": 128
+    },
+    "children": [
+      {
+        "role": "content",
+        "type": "group",
+        "flex": 1,
+        "layout": { "direction": "column", "gap": 16 },
+        "children": [
+          { "role": "tag", "type": "text", "font": "Geist Mono", "fontSize": 13, "fontWeight": 600, "letterSpacing": "0.08em", "textTransform": "uppercase" },
+          { "role": "headline", "type": "text", "font": "Geist", "fontSize": 48, "fontWeight": 800, "lineHeight": 1.1 },
+          { "role": "subheadline", "type": "text", "font": "Geist", "fontSize": 18, "lineHeight": 1.6, "maxWidth": 480 },
+          {
+            "role": "cta-group",
+            "type": "group",
+            "layout": { "direction": "row", "gap": 12 },
+            "children": [
+              { "role": "primary-cta", "type": "button", "variant": "primary" },
+              { "role": "secondary-cta", "type": "button", "variant": "secondary" }
+            ]
+          }
+        ]
+      },
+      {
+        "role": "visual",
+        "type": "image-placeholder",
+        "flex": 1,
+        "height": 400,
+        "label": "560×400"
+      }
+    ]
+  },
+
+  "hero-centered": {
+    "name": "Hero — Centered",
+    "category": "hero",
+    "variants": {
+      "light": {
+        "background": "#FFFFFF",
+        "headlineColor": "#121212",
+        "subheadColor": "#464646"
+      },
+      "dark": {
+        "background": "#121212",
+        "headlineColor": "#FFFFFF",
+        "subheadColor": "#DFDFDF"
+      }
+    },
+    "layout": {
+      "direction": "column",
+      "align": "center",
+      "textAlign": "center",
+      "paddingX": 48,
+      "paddingY": 128,
+      "gap": 24
+    },
+    "children": [
+      { "role": "tag", "type": "text", "font": "Geist Mono", "fontSize": 13, "fontWeight": 600, "letterSpacing": "0.08em", "textTransform": "uppercase" },
+      { "role": "headline", "type": "text", "font": "Geist", "fontSize": 56, "fontWeight": 800, "lineHeight": 1.1, "maxWidth": 800 },
+      { "role": "subheadline", "type": "text", "font": "Geist", "fontSize": 18, "lineHeight": 1.6, "maxWidth": 600 },
+      {
+        "role": "cta-group",
+        "type": "group",
+        "layout": { "direction": "row", "gap": 12 },
+        "children": [
+          { "role": "primary-cta", "type": "button", "variant": "primary" },
+          { "role": "secondary-cta", "type": "button", "variant": "secondary" }
+        ]
+      }
+    ]
+  },
+
+  "logo-bar": {
+    "name": "Logo Bar",
+    "category": "social-proof",
+    "variants": {
+      "light": {
+        "background": "#FFFFFF",
+        "labelColor": "#464646",
+        "logoBackground": "transparent",
+        "logoBorder": "1px dashed #DFDFDF"
+      },
+      "dark": {
+        "background": "#121212",
+        "labelColor": "#DFDFDF",
+        "logoBackground": "transparent",
+        "logoBorder": "1px dashed #464646"
+      }
+    },
+    "layout": {
+      "direction": "column",
+      "align": "center",
+      "paddingX": 48,
+      "paddingY": 48,
+      "gap": 32
+    },
+    "children": [
+      { "role": "label", "type": "text", "font": "Geist Mono", "fontSize": 13, "fontWeight": 600, "letterSpacing": "0.08em", "textTransform": "uppercase" },
+      {
+        "role": "logos",
+        "type": "group",
+        "layout": { "direction": "row", "gap": 48, "justify": "center" },
+        "itemCount": 6,
+        "itemWidth": 120,
+        "itemHeight": 40,
+        "itemType": "image-placeholder"
+      }
+    ]
+  },
+
+  "features-cards": {
+    "name": "Features — Card Grid",
+    "category": "features",
+    "variants": {
+      "light": {
+        "background": "#F5F5F5",
+        "cardBackground": "#FFFFFF",
+        "cardBorder": "1px solid #DFDFDF",
+        "titleColor": "#121212",
+        "descColor": "#464646",
+        "tagColor": "#464646"
+      },
+      "dark": {
+        "background": "#121212",
+        "cardBackground": "#2C2C2C",
+        "cardBorder": "1px solid #464646",
+        "titleColor": "#FFFFFF",
+        "descColor": "#DFDFDF",
+        "tagColor": "#DFDFDF"
+      }
+    },
+    "layout": {
+      "direction": "column",
+      "align": "center",
+      "paddingX": 48,
+      "paddingY": 96,
+      "gap": 48
+    },
+    "children": [
+      { "role": "tag", "type": "text", "font": "Geist Mono", "fontSize": 13, "fontWeight": 600, "textTransform": "uppercase" },
+      { "role": "heading", "type": "text", "font": "Geist", "fontSize": 32, "fontWeight": 700 },
+      { "role": "subheading", "type": "text", "font": "Geist", "fontSize": 16, "maxWidth": 560 },
+      {
+        "role": "card-grid",
+        "type": "group",
+        "layout": { "direction": "row", "gap": 24, "wrap": true },
+        "columns": 3,
+        "children": [
+          {
+            "role": "card",
+            "type": "card",
+            "padding": 24,
+            "layout": { "direction": "column", "gap": 16 },
+            "children": [
+              { "role": "icon", "type": "image-placeholder", "width": 48, "height": 48 },
+              { "role": "title", "type": "text", "font": "Geist", "fontSize": 18, "fontWeight": 700 },
+              { "role": "description", "type": "text", "font": "Geist", "fontSize": 14, "lineHeight": 1.7 }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+
+  "features-alternating": {
+    "name": "Features — Alternating Rows",
+    "category": "features",
+    "variants": {
+      "light": {
+        "background": "#F5F5F5",
+        "titleColor": "#121212",
+        "descColor": "#464646"
+      },
+      "dark": {
+        "background": "#121212",
+        "titleColor": "#FFFFFF",
+        "descColor": "#DFDFDF"
+      }
+    },
+    "layout": {
+      "direction": "column",
+      "align": "center",
+      "paddingX": 48,
+      "paddingY": 96,
+      "gap": 64
+    },
+    "children": [
+      { "role": "heading", "type": "text", "font": "Geist", "fontSize": 32, "fontWeight": 700 },
+      {
+        "role": "feature-row",
+        "type": "group",
+        "layout": { "direction": "row", "gap": 48, "align": "center" },
+        "alternateLayout": true,
+        "children": [
+          {
+            "role": "text-block",
+            "type": "group",
+            "flex": 1,
+            "layout": { "direction": "column", "gap": 12 },
+            "children": [
+              { "role": "title", "type": "text", "font": "Geist", "fontSize": 24, "fontWeight": 700 },
+              { "role": "description", "type": "text", "font": "Geist", "fontSize": 15, "lineHeight": 1.7 }
+            ]
+          },
+          { "role": "visual", "type": "image-placeholder", "flex": 1, "height": 320, "label": "640×320" }
+        ]
+      }
+    ]
+  },
+
+  "how-it-works": {
+    "name": "How It Works — Steps",
+    "category": "process",
+    "variants": {
+      "light": {
+        "background": "#FFFFFF",
+        "headlineColor": "#121212",
+        "subheadColor": "#464646",
+        "stepNumberBg": "#121212",
+        "stepNumberColor": "#FFFFFF",
+        "stepTitleColor": "#121212",
+        "stepDescColor": "#464646"
+      },
+      "dark": {
+        "background": "#121212",
+        "headlineColor": "#FFFFFF",
+        "subheadColor": "#DFDFDF",
+        "stepNumberBg": "#FFFFFF",
+        "stepNumberColor": "#121212",
+        "stepTitleColor": "#FFFFFF",
+        "stepDescColor": "#DFDFDF"
+      }
+    },
+    "layout": {
+      "direction": "column",
+      "align": "center",
+      "paddingX": 48,
+      "paddingY": 96,
+      "gap": 64
+    },
+    "children": [
+      { "role": "heading", "type": "text", "font": "Geist", "fontSize": 32, "fontWeight": 700 },
+      { "role": "subheading", "type": "text", "font": "Geist", "fontSize": 16 },
+      {
+        "role": "steps",
+        "type": "group",
+        "layout": { "direction": "row", "gap": 24 },
+        "columns": 3,
+        "children": [
+          {
+            "role": "step",
+            "type": "group",
+            "layout": { "direction": "column", "align": "center", "gap": 16 },
+            "children": [
+              { "role": "number", "type": "badge", "font": "Geist Mono", "width": 48, "height": 48, "fontSize": 20, "fontWeight": 700 },
+              { "role": "title", "type": "text", "font": "Geist", "fontSize": 18, "fontWeight": 700 },
+              { "role": "description", "type": "text", "font": "Geist", "fontSize": 14, "textAlign": "center" }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+
+  "testimonials-cards": {
+    "name": "Testimonials — Card Grid",
+    "category": "social-proof",
+    "variants": {
+      "light": {
+        "background": "#FFFFFF",
+        "cardBackground": "#FFFFFF",
+        "cardBorder": "1px solid #DFDFDF",
+        "quoteColor": "#2C2C2C",
+        "nameColor": "#121212",
+        "roleColor": "#464646"
+      },
+      "dark": {
+        "background": "#121212",
+        "cardBackground": "#2C2C2C",
+        "cardBorder": "1px solid #464646",
+        "quoteColor": "#DFDFDF",
+        "nameColor": "#FFFFFF",
+        "roleColor": "#DFDFDF"
+      }
+    },
+    "layout": {
+      "direction": "column",
+      "align": "center",
+      "paddingX": 48,
+      "paddingY": 96,
+      "gap": 48
+    },
+    "children": [
+      { "role": "heading", "type": "text", "font": "Geist", "fontSize": 32, "fontWeight": 700 },
+      {
+        "role": "card-grid",
+        "type": "group",
+        "layout": { "direction": "row", "gap": 24 },
+        "columns": 2,
+        "children": [
+          {
+            "role": "card",
+            "type": "card",
+            "padding": 32,
+            "layout": { "direction": "column", "gap": 24 },
+            "children": [
+              { "role": "quote", "type": "text", "font": "Geist", "fontSize": 15, "lineHeight": 1.7, "fontStyle": "italic" },
+              {
+                "role": "author",
+                "type": "group",
+                "layout": { "direction": "row", "gap": 12, "align": "center" },
+                "children": [
+                  { "role": "avatar", "type": "image-placeholder", "width": 40, "height": 40, "label": "40×40" },
+                  {
+                    "role": "info",
+                    "type": "group",
+                    "layout": { "direction": "column", "gap": 2 },
+                    "children": [
+                      { "role": "name", "type": "text", "font": "Geist", "fontSize": 14, "fontWeight": 700 },
+                      { "role": "role", "type": "text", "font": "Geist", "fontSize": 13 }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+
+  "pricing-cards": {
+    "name": "Pricing — Tier Cards",
+    "category": "pricing",
+    "variants": {
+      "light": {
+        "background": "#F5F5F5",
+        "cardBackground": "#FFFFFF",
+        "cardBorder": "1px solid #DFDFDF",
+        "featuredBorder": "2px solid #121212",
+        "priceColor": "#121212",
+        "labelColor": "#464646",
+        "featureColor": "#2C2C2C"
+      },
+      "dark": {
+        "background": "#121212",
+        "cardBackground": "#2C2C2C",
+        "cardBorder": "1px solid #464646",
+        "featuredBorder": "2px solid #FFFFFF",
+        "priceColor": "#FFFFFF",
+        "labelColor": "#DFDFDF",
+        "featureColor": "#DFDFDF"
+      }
+    },
+    "layout": {
+      "direction": "column",
+      "align": "center",
+      "paddingX": 48,
+      "paddingY": 96,
+      "gap": 48
+    },
+    "children": [
+      { "role": "heading", "type": "text", "font": "Geist", "fontSize": 32, "fontWeight": 700 },
+      { "role": "subheading", "type": "text", "font": "Geist", "fontSize": 16 },
+      {
+        "role": "card-grid",
+        "type": "group",
+        "layout": { "direction": "row", "gap": 24 },
+        "columns": 3,
+        "children": [
+          {
+            "role": "card",
+            "type": "card",
+            "padding": 32,
+            "layout": { "direction": "column", "gap": 16 },
+            "children": [
+              { "role": "tier-name", "type": "text", "font": "Geist", "fontSize": 20, "fontWeight": 700 },
+              { "role": "price", "type": "text", "font": "Geist", "fontSize": 40, "fontWeight": 800 },
+              { "role": "description", "type": "text", "font": "Geist", "fontSize": 14 },
+              { "role": "feature-list", "type": "list", "font": "Geist", "fontSize": 14, "itemGap": 8 },
+              { "role": "cta", "type": "button", "font": "Geist Mono", "fullWidth": true }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+
+  "faq-accordion": {
+    "name": "FAQ — Accordion",
+    "category": "faq",
+    "variants": {
+      "light": {
+        "background": "#FFFFFF",
+        "headlineColor": "#121212",
+        "questionColor": "#121212",
+        "answerColor": "#464646",
+        "divider": "1px solid #DFDFDF",
+        "toggleColor": "#464646"
+      },
+      "dark": {
+        "background": "#121212",
+        "headlineColor": "#FFFFFF",
+        "questionColor": "#FFFFFF",
+        "answerColor": "#DFDFDF",
+        "divider": "1px solid #2C2C2C",
+        "toggleColor": "#DFDFDF"
+      }
+    },
+    "layout": {
+      "direction": "column",
+      "align": "center",
+      "paddingX": 48,
+      "paddingY": 96,
+      "gap": 48
+    },
+    "children": [
+      { "role": "heading", "type": "text", "font": "Geist", "fontSize": 32, "fontWeight": 700 },
+      {
+        "role": "faq-list",
+        "type": "group",
+        "maxWidth": 720,
+        "layout": { "direction": "column", "gap": 0 },
+        "children": [
+          {
+            "role": "faq-item",
+            "type": "group",
+            "layout": { "direction": "row", "justify": "space-between", "align": "center" },
+            "paddingY": 20,
+            "children": [
+              { "role": "question", "type": "text", "font": "Geist", "fontSize": 16, "fontWeight": 600 },
+              { "role": "toggle", "type": "text", "font": "Geist Mono", "fontSize": 20, "content": "+" }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+
+  "cta-banner": {
+    "name": "CTA Banner",
+    "category": "cta",
+    "variants": {
+      "light": {
+        "background": "#F5F5F5",
+        "headlineColor": "#121212",
+        "subheadColor": "#464646"
+      },
+      "dark": {
+        "background": "#121212",
+        "headlineColor": "#FFFFFF",
+        "subheadColor": "#DFDFDF"
+      }
+    },
+    "layout": {
+      "direction": "column",
+      "align": "center",
+      "textAlign": "center",
+      "paddingX": 48,
+      "paddingY": 96,
+      "gap": 16
+    },
+    "children": [
+      { "role": "headline", "type": "text", "font": "Geist", "fontSize": 36, "fontWeight": 800 },
+      { "role": "subheadline", "type": "text", "font": "Geist", "fontSize": 16 },
+      { "role": "cta", "type": "button", "font": "Geist Mono", "paddingX": 32, "paddingY": 16, "fontSize": 16 }
+    ]
+  },
+
+  "footer": {
+    "name": "Footer",
+    "category": "footer",
+    "variants": {
+      "light": {
+        "background": "#F5F5F5",
+        "logoColor": "#121212",
+        "descColor": "#464646",
+        "headingColor": "#464646",
+        "linkColor": "#464646",
+        "divider": "1px solid #DFDFDF",
+        "copyrightColor": "#464646"
+      },
+      "dark": {
+        "background": "#121212",
+        "logoColor": "#FFFFFF",
+        "descColor": "#464646",
+        "headingColor": "#DFDFDF",
+        "linkColor": "#464646",
+        "divider": "1px solid #2C2C2C",
+        "copyrightColor": "#464646"
+      }
+    },
+    "layout": {
+      "direction": "column",
+      "paddingX": 48,
+      "paddingTop": 64,
+      "paddingBottom": 32,
+      "gap": 48
+    },
+    "children": [
+      {
+        "role": "footer-grid",
+        "type": "group",
+        "layout": { "direction": "row", "gap": 48 },
+        "children": [
+          {
+            "role": "brand",
+            "type": "group",
+            "flex": 2,
+            "layout": { "direction": "column", "gap": 12 },
+            "children": [
+              { "role": "logo", "type": "text", "font": "Geist", "fontSize": 18, "fontWeight": 800 },
+              { "role": "description", "type": "text", "font": "Geist", "fontSize": 13, "lineHeight": 1.6, "maxWidth": 280 }
+            ]
+          },
+          {
+            "role": "nav-column",
+            "type": "group",
+            "flex": 1,
+            "layout": { "direction": "column", "gap": 16 },
+            "children": [
+              { "role": "column-heading", "type": "text", "font": "Geist Mono", "fontSize": 13, "fontWeight": 700, "letterSpacing": "0.06em", "textTransform": "uppercase" },
+              { "role": "link", "type": "text", "font": "Geist", "fontSize": 14, "lineHeight": 2 }
+            ]
+          }
+        ]
+      },
+      {
+        "role": "footer-bottom",
+        "type": "group",
+        "layout": { "direction": "row", "justify": "space-between", "align": "center" },
+        "children": [
+          { "role": "copyright", "type": "text", "font": "Geist", "fontSize": 13 },
+          {
+            "role": "legal-links",
+            "type": "group",
+            "layout": { "direction": "row", "gap": 24 },
+            "children": [
+              { "role": "link", "type": "text", "font": "Geist", "fontSize": 13 }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+
+  "metrics-bar": {
+    "name": "Metrics Bar",
+    "category": "social-proof",
+    "variants": {
+      "light": {
+        "background": "#F5F5F5",
+        "numberColor": "#121212",
+        "labelColor": "#464646"
+      },
+      "dark": {
+        "background": "#121212",
+        "numberColor": "#FFFFFF",
+        "labelColor": "#DFDFDF"
+      }
+    },
+    "layout": {
+      "direction": "row",
+      "justify": "center",
+      "paddingX": 48,
+      "paddingY": 64,
+      "gap": 96
+    },
+    "children": [
+      {
+        "role": "metric",
+        "type": "group",
+        "layout": { "direction": "column", "align": "center", "gap": 8 },
+        "repeat": 3,
+        "children": [
+          { "role": "number", "type": "text", "font": "Geist", "fontSize": 48, "fontWeight": 800 },
+          { "role": "label", "type": "text", "font": "Geist", "fontSize": 14, "fontWeight": 500 }
+        ]
+      }
+    ]
+  },
+
+  "code-block-section": {
+    "name": "Code Block Section",
+    "category": "developer",
+    "variants": {
+      "dark": {
+        "background": "#121212",
+        "headlineColor": "#FFFFFF",
+        "subheadColor": "#464646",
+        "codeBackground": "#2C2C2C",
+        "codeBorder": "1px solid #464646",
+        "codeTextColor": "#DFDFDF"
+      }
+    },
+    "layout": {
+      "direction": "column",
+      "align": "center",
+      "paddingX": 48,
+      "paddingY": 96,
+      "gap": 48
+    },
+    "children": [
+      { "role": "heading", "type": "text", "font": "Geist", "fontSize": 32, "fontWeight": 700 },
+      { "role": "subheading", "type": "text", "font": "Geist", "fontSize": 16 },
+      {
+        "role": "code-block",
+        "type": "code",
+        "font": "Geist Mono",
+        "fontSize": 14,
+        "lineHeight": 1.8,
+        "padding": 32,
+        "maxWidth": 800
+      }
+    ]
+  },
+
+  "about-split": {
+    "name": "About — Split (Image + Text)",
+    "category": "about",
+    "variants": {
+      "light": {
+        "background": "#FFFFFF",
+        "tagColor": "#464646",
+        "headlineColor": "#121212",
+        "bodyColor": "#464646"
+      },
+      "dark": {
+        "background": "#121212",
+        "tagColor": "#DFDFDF",
+        "headlineColor": "#FFFFFF",
+        "bodyColor": "#DFDFDF"
+      }
+    },
+    "layout": {
+      "direction": "row",
+      "gap": 48,
+      "align": "center",
+      "paddingX": 48,
+      "paddingY": 96
+    },
+    "children": [
+      {
+        "role": "image",
+        "type": "image-placeholder",
+        "flex": 1,
+        "height": 480,
+        "label": "600×480"
+      },
+      {
+        "role": "content",
+        "type": "group",
+        "flex": 1,
+        "layout": { "direction": "column", "gap": 16 },
+        "children": [
+          { "role": "tag", "type": "text", "font": "Geist Mono", "fontSize": 13, "fontWeight": 600, "letterSpacing": "0.08em", "textTransform": "uppercase" },
+          { "role": "headline", "type": "text", "font": "Geist", "fontSize": 32, "fontWeight": 700 },
+          { "role": "body", "type": "text", "font": "Geist", "fontSize": 15, "lineHeight": 1.7, "paragraphs": true }
+        ]
+      }
+    ]
+  },
+
+  "_buttons": {
+    "primary": {
+      "font": "Geist Mono",
+      "fontSize": 14,
+      "fontWeight": 600,
+      "paddingX": 24,
+      "paddingY": 12,
+      "background": "#121212",
+      "textColor": "#FFFFFF",
+      "border": "none"
+    },
+    "secondary": {
+      "font": "Geist Mono",
+      "fontSize": 14,
+      "fontWeight": 600,
+      "paddingX": 24,
+      "paddingY": 12,
+      "background": "transparent",
+      "textColor": "#121212",
+      "border": "1px solid #DFDFDF"
+    },
+    "primary-inverted": {
+      "font": "Geist Mono",
+      "fontSize": 14,
+      "fontWeight": 600,
+      "paddingX": 24,
+      "paddingY": 12,
+      "background": "#FFFFFF",
+      "textColor": "#121212",
+      "border": "none"
+    },
+    "secondary-inverted": {
+      "font": "Geist Mono",
+      "fontSize": 14,
+      "fontWeight": 600,
+      "paddingX": 24,
+      "paddingY": 12,
+      "background": "transparent",
+      "textColor": "#FFFFFF",
+      "border": "1px solid #464646"
+    }
+  }
+}
