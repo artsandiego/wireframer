@@ -17,14 +17,16 @@ Built for [Claude Code](https://docs.anthropic.com/en/docs/claude-code) and [Cla
 
 ## Option 1: Claude Code CLI (Recommended)
 
-### One-line install via curl:
-From your project folder, run this one-line installer
+### Install via curl:
+
+1. Open your terminal from your project folder.
+> 🚨 Make sure your terminal is open in the project where you want to install the `/wireframer` command.
+
+2. Run this one-line installer:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/artsandiego/wireframer/main/install.sh | bash
 ```
-
-> 🚨 Make sure your terminal is open in the project where you want to install the `/wireframer` command.
 
 This creates the following in your project:
 
@@ -38,13 +40,11 @@ your-project/
 │       └── section-library.md          ← page-type compositions
 ```
 
-Then open Claude Code in that project and run:
+3. Open Claude Code in that project and run:
 
 ```
 /wireframer
 ```
-
----
 
 ### Manual Install:
 
